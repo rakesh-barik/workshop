@@ -3,6 +3,7 @@ package com.purina.feedright.service
 import com.purina.feedright.dto.*
 import com.purina.feedright.model.Visit
 import com.purina.feedright.repository.*
+import com.purina.feedright.sse.SseEmitterRegistry
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.time.LocalDateTime
@@ -14,7 +15,8 @@ class VisitService(
     private val visitRepository: VisitRepository,
     private val salesmanRepository: SalesmanRepository,
     private val farmRepository: FarmRepository,
-    private val productRepository: ProductRepository
+    private val productRepository: ProductRepository,
+    private val sseRegistry: SseEmitterRegistry
 ) {
 
     fun getAllVisits(): List<VisitDTO> {
@@ -60,22 +62,30 @@ class VisitService(
             syncedAt = LocalDateTime.now()
         )
 
-        return visitRepository.save(visit).toDTO()
+        val dto = visitRepository.save(visit).toDTO()
+        sseRegistry.broadcast("visit-created", dto)
+        return dto
     }
 
     fun syncVisits(syncRequest: SyncRequest): SyncResponse {
         var synced = 0
         var failed = 0
         val errors = mutableListOf<String>()
+        val syncedVisits = mutableListOf<VisitDTO>()
 
         syncRequest.visits.forEach { visitRequest ->
             try {
-                createVisit(visitRequest)
+                val dto = createVisit(visitRequest)
+                syncedVisits.add(dto)
                 synced++
             } catch (e: Exception) {
                 failed++
                 errors.add("Failed to sync visit: ${e.message}")
             }
+        }
+
+        if (syncedVisits.isNotEmpty()) {
+            sseRegistry.broadcast("visits-synced", syncedVisits)
         }
 
         return SyncResponse(synced = synced, failed = failed, errors = errors)
