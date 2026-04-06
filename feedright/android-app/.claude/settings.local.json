@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gradle --version)",
+      "Bash(brew list:*)",
+      "Bash(brew install:*)",
+      "Bash(brew link:*)",
+      "Bash(gradle wrapper:*)",
+      "Bash(curl -L -o /Users/ibhan/workshop/feedright/android-app/gradle/wrapper/gradle-wrapper.jar \"https://raw.githubusercontent.com/gradle/gradle/v8.7.0/gradle/wrapper/gradle-wrapper.jar\")",
+      "Bash(chmod +x /Users/ibhan/workshop/feedright/android-app/gradlew)",
+      "Bash(./gradlew assembleDebug:*)"
+    ]
+  }
+}

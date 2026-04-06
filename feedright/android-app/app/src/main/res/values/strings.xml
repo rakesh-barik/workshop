@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FeedRight</string>
+
+    <!-- Login Screen -->
+    <string name="login_title">FeedRight Login</string>
+    <string name="login_phone_hint">Phone Number</string>
+    <string name="login_pin_hint">PIN</string>
+    <string name="login_button">Login</string>
+    <string name="login_error">Invalid credentials</string>
+
+    <!-- Home Screen -->
+    <string name="home_title">FeedRight</string>
+    <string name="home_record_visit">Record Visit</string>
+    <string name="home_recent_visits">Recent Visits</string>
+    <string name="home_sync_status">Sync Status</string>
+
+    <!-- Visit Recording Screen -->
+    <string name="visit_title">Record Visit</string>
+    <string name="visit_farm_label">Select Farm</string>
+    <string name="visit_product_label">Select Product</string>
+    <string name="visit_quantity_label">Quantity (kg)</string>
+    <string name="visit_notes_label">Notes (optional)</string>
+    <string name="visit_save_button">Save Visit</string>
+    <string name="visit_saved">Visit recorded successfully</string>
+
+    <!-- Sync -->
+    <string name="sync_pending">%d visits pending sync</string>
+    <string name="sync_synced">All visits synced</string>
+    <string name="sync_error">Sync failed. Will retry.</string>
+
+    <!-- Common -->
+    <string name="error_loading">Error loading data</string>
+    <string name="loading">Loading...</string>
+    <string name="retry">Retry</string>
+    <string name="cancel">Cancel</string>
+</resources>

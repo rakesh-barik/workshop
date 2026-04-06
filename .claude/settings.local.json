@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(done)",
+      "Bash(bash:*)",
+      "Bash(mkdir:*)",
+      "Bash(docker-compose up:*)",
+      "Bash(docker ps:*)",
+      "Bash(gradle wrapper:*)",
+      "Bash(curl:*)",
+      "Bash(chmod:*)",
+      "Bash(/Users/ibhan/workshop/feedright/backend/gradlew:*)",
+      "Bash(python3:*)",
+      "Bash(npm create:*)",
+      "Bash(npm install)",
+      "Bash(npm run dev:*)",
+      "Bash(node --version:*)",
+      "Bash(brew upgrade:*)",
+      "Bash(brew install:*)",
+      "Bash(brew link:*)",
+      "Bash(sudo rm:*)",
+      "Bash(/usr/local/Cellar/node/25.9.0_1/bin/node:*)",
+      "Bash(export PATH=\"/usr/local/Cellar/node/25.9.0_1/bin:$PATH\")",
+      "Bash(adb devices:*)",
+      "Read(//Users/ibhan/Library/Android/sdk/platform-tools/**)",
+      "Read(//Users/ibhan/Library/Android/sdk/**)",
+      "Bash(export PATH=\"$PATH:/Users/ibhan/Library/Android/sdk/platform-tools:/Users/ibhan/Library/Android/sdk/emulator\")",
+      "Bash(export PATH=\"$PATH:/Users/ibhan/Library/Android/sdk/platform-tools\")",
+      "Bash(adb -s emulator-5554 shell getprop ro.build.version.release)",
+      "Bash(adb -s emulator-5554 shell getprop ro.product.cpu.abi)",
+      "Bash(java -version)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
