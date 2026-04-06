@@ -1,6 +1,6 @@
 # FeedRight - Field Sales Visit Tracking System
 
-A complete visit recording system for Purina salesmen to track farm visits, product recommendations, and field activity.
+A complete visit recording system for salesmen to track farm visits, product recommendations, and field activity.
 
 ## Project Overview
 
