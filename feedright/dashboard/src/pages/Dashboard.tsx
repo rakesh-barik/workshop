@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { visitApi, salesmanApi, farmApi } from '../api/client';
+import { visitApi, salesmanApi, farmApi, connectToVisitStream } from '../api/client';
 import type { Visit, Salesman, Farm } from '../types';
 import StatsCard from '../components/StatsCard';
 import VisitTable from '../components/VisitTable';
@@ -41,6 +41,25 @@ export default function Dashboard() {
     };
 
     loadData();
+  }, []);
+
+  // Subscribe to real-time visit updates via SSE
+  useEffect(() => {
+    const disconnect = connectToVisitStream(
+      (newVisit) => {
+        setVisits(prev =>
+          prev.some(v => v.id === newVisit.id) ? prev : [newVisit, ...prev]
+        );
+      },
+      (newVisits) => {
+        setVisits(prev => {
+          const existingIds = new Set(prev.map(v => v.id));
+          const incoming = newVisits.filter(v => !existingIds.has(v.id));
+          return incoming.length > 0 ? [...incoming, ...prev] : prev;
+        });
+      }
+    );
+    return disconnect;
   }, []);
 
   // Filter visits based on selected filters

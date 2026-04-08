@@ -80,4 +80,21 @@ export const productApi = {
   },
 };
 
+export function connectToVisitStream(
+  onVisitCreated: (visit: Visit) => void,
+  onVisitsSynced: (visits: Visit[]) => void
+): () => void {
+  const eventSource = new EventSource('/api/visits/stream');
+
+  eventSource.addEventListener('visit-created', (e: MessageEvent) => {
+    onVisitCreated(JSON.parse(e.data) as Visit);
+  });
+
+  eventSource.addEventListener('visits-synced', (e: MessageEvent) => {
+    onVisitsSynced(JSON.parse(e.data) as Visit[]);
+  });
+
+  return () => eventSource.close();
+}
+
 export default api;
